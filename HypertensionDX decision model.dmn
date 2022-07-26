@@ -5,25 +5,47 @@
     <dmn:itemComponent id="_9EC08977-9F9D-42C9-9719-741CC6782814" name="patientId" isCollection="false">
       <dmn:typeRef>number</dmn:typeRef>
     </dmn:itemComponent>
-    <dmn:itemComponent id="_BF2A0D2C-6698-46D5-9153-2E9674D399C8" name="flagName" isCollection="false">
-      <dmn:typeRef>string</dmn:typeRef>
-    </dmn:itemComponent>
     <dmn:itemComponent id="_000647AA-AD3B-4454-8228-F5B340F9BFA8" name="diagnosisDate" isCollection="false">
       <dmn:typeRef>date</dmn:typeRef>
     </dmn:itemComponent>
   </dmn:itemDefinition>
-  <dmn:itemDefinition id="_37EF2A83-12AE-4219-A48F-51AAC8F47D90" name="tHypertensionDxList" isCollection="true">
+  <dmn:itemDefinition id="_6D9DC24C-7A8F-4643-8CC0-FFE77F3F0F74" name="tBloodPressureReading" isCollection="false">
+    <dmn:itemComponent id="_069277CF-1409-40E8-9EEB-62C51C7C9DA2" name="sbpValue" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_31448CF6-B129-4C9E-805F-3491DA7EB1F0" name="dbpValue" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_C7830681-DFFF-4A64-8605-1D797ADDE7DF" name="readingDate" isCollection="false">
+      <dmn:typeRef>date</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_9F7D581A-872F-4F32-B0E1-11F5A4FCE9FA" name="tHospiceEvent" isCollection="false">
+    <dmn:itemComponent id="_93E7477A-DD6C-4E34-9F6F-0AE092371255" name="eventDate" isCollection="false">
+      <dmn:typeRef>date</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_98245F31-A212-4D44-9D39-DF68EB0E3DEE" name="tReadings" isCollection="true">
+    <dmn:typeRef>tBloodPressureReading</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_70736561-8E84-49A1-89CD-A04F80FDCC7D" name="tHypertensions" isCollection="true">
     <dmn:typeRef>tHypertensionDx</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_DF8DA34B-AF0D-4D59-A088-021EEF888967" name="tHospiceEvents" isCollection="true">
+    <dmn:typeRef>tHospiceEvent</dmn:typeRef>
   </dmn:itemDefinition>
   <dmn:inputData id="_69E39F76-E023-48ED-A002-9971D5888308" name="Hypertension Data">
     <dmn:extensionElements/>
-    <dmn:variable id="_BBFCC50F-AD31-4871-BCE0-AD577D680C6A" name="Hypertension Data" typeRef="tHypertensionDxList"/>
+    <dmn:variable id="_BBFCC50F-AD31-4871-BCE0-AD577D680C6A" name="Hypertension Data" typeRef="tHypertensions"/>
   </dmn:inputData>
   <dmn:decision id="_5257AE7F-C428-4988-82BD-335D87F29909" name="Flags Result">
     <dmn:extensionElements/>
     <dmn:variable id="_202B70CF-42CB-4887-B0FE-23843756BA9B" name="Flags Result" typeRef="number"/>
     <dmn:informationRequirement id="_D721FA31-C886-42FA-A966-BF942EA99304">
       <dmn:requiredInput href="#_69E39F76-E023-48ED-A002-9971D5888308"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB">
+      <dmn:requiredInput href="#_E991D791-DDCA-46BB-B6DB-55D3431ABA3A"/>
     </dmn:informationRequirement>
     <dmn:knowledgeRequirement id="_4358FF27-D044-4553-9F8C-DE8D6C55EDEF">
       <dmn:requiredKnowledge href="#_37886295-C735-4F04-85AF-0B9BC03C0594"/>
@@ -36,12 +58,54 @@
     <dmn:extensionElements/>
     <dmn:variable id="_DA867FB7-1084-4A0B-8250-C07F2E40A415" name="Hypertension Check" typeRef="number"/>
     <dmn:encapsulatedLogic id="_2D0477EA-6AB4-4D16-B1CA-FA9736F7BF2A" kind="FEEL">
-      <dmn:formalParameter id="_02D71E62-A629-4A42-BB80-4F01F2EE7E4E" name="pHypertensionData" typeRef="tHypertensionDxList"/>
+      <dmn:formalParameter id="_02D71E62-A629-4A42-BB80-4F01F2EE7E4E" name="pHypertensionData" typeRef="tHypertensions"/>
       <dmn:literalExpression id="_694DB4A5-9E91-489C-91CF-FA5FA7108482">
         <dmn:text>count( pHypertensionData[ after(diagnosisDate, date(today().year-1, 1, 1)) and before(diagnosisDate, date(today().year, 6, 30)) ] )</dmn:text>
       </dmn:literalExpression>
     </dmn:encapsulatedLogic>
   </dmn:businessKnowledgeModel>
+  <dmn:inputData id="_776EADEB-44A6-4524-8AD5-B71BF261D43C" name="Blood Pressure Readings">
+    <dmn:extensionElements/>
+    <dmn:variable id="_A9D56F1A-C504-4439-BD1C-DAC3C3754182" name="Blood Pressure Readings" typeRef="tReadings"/>
+  </dmn:inputData>
+  <dmn:inputData id="_E991D791-DDCA-46BB-B6DB-55D3431ABA3A" name="Hospice Events">
+    <dmn:extensionElements/>
+    <dmn:variable id="_B087B070-36ED-4FFF-A7D7-2597310DF257" name="Hospice Events" typeRef="tHospiceEvents"/>
+  </dmn:inputData>
+  <dmn:businessKnowledgeModel id="_118F82F5-0222-49A3-B9EA-55B33F97BE44" name="Sort by Date">
+    <dmn:extensionElements/>
+    <dmn:variable id="_B5736AD7-308D-457C-B96C-FA3FE8E70649" name="Sort by Date"/>
+    <dmn:encapsulatedLogic id="_E796C743-FEBA-4CBD-B5FD-F51004DA98CB" kind="FEEL">
+      <dmn:formalParameter id="_3CF0968A-DA66-4F1C-8C67-C110F0811240" name="pReading1" typeRef="Any"/>
+      <dmn:formalParameter id="_1DA20CF9-E483-4142-A016-BBE7CEC1DF9A" name="pReading2" typeRef="Any"/>
+      <dmn:literalExpression id="_311D5F92-61C7-4246-90A8-36586BAB591B">
+        <dmn:text>pReading1.readingDate &gt; pReading2.readingDate</dmn:text>
+      </dmn:literalExpression>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmn:decision id="_1CEB8CE4-B775-4EFD-9AD8-FC4FF1620398" name="Blood Pressure Check">
+    <dmn:extensionElements/>
+    <dmn:variable id="_F40ADD9E-2246-42ED-9258-1B483D63F2F8" name="Blood Pressure Check" typeRef="tBloodPressureReading"/>
+    <dmn:informationRequirement id="_7E6C72B9-C8EC-4A17-8836-28796EF88C2B">
+      <dmn:requiredInput href="#_776EADEB-44A6-4524-8AD5-B71BF261D43C"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_9C35DB06-B608-4645-9D8A-F9D1BF731C61">
+      <dmn:requiredKnowledge href="#_118F82F5-0222-49A3-B9EA-55B33F97BE44"/>
+    </dmn:knowledgeRequirement>
+    <dmn:context id="_6D012BA7-AAD9-4543-85AB-F85BAA64890D">
+      <dmn:contextEntry>
+        <dmn:variable id="_AB9CCE2B-2241-442F-A0EB-C0AF7DCD0E9A" name="sortedReadings" typeRef="tReadings"/>
+        <dmn:literalExpression id="_0C9C0005-4A50-4876-83DF-D7BE8488B481">
+          <dmn:text>sort(Blood Pressure Readings[readingDate.year = today().year], Sort by Date)</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_44D407D1-3F79-414D-8C82-850EED21FFF6">
+          <dmn:text>if count(sortedReadings) &gt; 0 then sortedReadings[1] else null</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="_42842724-2825-4B08-945E-EA2AD481D26A" name="DRG">
       <di:extension>
@@ -56,6 +120,24 @@
             <kie:width>50</kie:width>
             <kie:width>1087</kie:width>
           </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_311D5F92-61C7-4246-90A8-36586BAB591B">
+            <kie:width>445</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E796C743-FEBA-4CBD-B5FD-F51004DA98CB">
+            <kie:width>50</kie:width>
+            <kie:width>445</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6D012BA7-AAD9-4543-85AB-F85BAA64890D">
+            <kie:width>50</kie:width>
+            <kie:width>197</kie:width>
+            <kie:width>708</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_0C9C0005-4A50-4876-83DF-D7BE8488B481">
+            <kie:width>708</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_44D407D1-3F79-414D-8C82-850EED21FFF6">
+            <kie:width>708</kie:width>
+          </kie:ComponentWidths>
         </kie:ComponentsWidthsExtension>
       </di:extension>
       <dmndi:DMNShape id="dmnshape-drg-_69E39F76-E023-48ED-A002-9971D5888308" dmnElementRef="_69E39F76-E023-48ED-A002-9971D5888308" isCollapsed="false">
@@ -64,7 +146,7 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="461" y="294" width="100" height="50"/>
+        <dc:Bounds x="198" y="290" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-drg-_5257AE7F-C428-4988-82BD-335D87F29909" dmnElementRef="_5257AE7F-C428-4988-82BD-335D87F29909" isCollapsed="false">
@@ -73,7 +155,7 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="462" y="127" width="100" height="50"/>
+        <dc:Bounds x="482" y="127" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-drg-_37886295-C735-4F04-85AF-0B9BC03C0594" dmnElementRef="_37886295-C735-4F04-85AF-0B9BC03C0594" isCollapsed="false">
@@ -82,16 +164,64 @@
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="711" y="126" width="100" height="50"/>
+        <dc:Bounds x="720" y="11" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_776EADEB-44A6-4524-8AD5-B71BF261D43C" dmnElementRef="_776EADEB-44A6-4524-8AD5-B71BF261D43C" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="743.2990654205607" y="321" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_E991D791-DDCA-46BB-B6DB-55D3431ABA3A" dmnElementRef="_E991D791-DDCA-46BB-B6DB-55D3431ABA3A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="481" y="299" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_118F82F5-0222-49A3-B9EA-55B33F97BE44" dmnElementRef="_118F82F5-0222-49A3-B9EA-55B33F97BE44" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="953" y="109" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_1CEB8CE4-B775-4EFD-9AD8-FC4FF1620398" dmnElementRef="_1CEB8CE4-B775-4EFD-9AD8-FC4FF1620398" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="745" y="213" width="100" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="dmnedge-drg-_D721FA31-C886-42FA-A966-BF942EA99304" dmnElementRef="_D721FA31-C886-42FA-A966-BF942EA99304">
-        <di:waypoint x="511" y="319"/>
-        <di:waypoint x="512" y="177"/>
+        <di:waypoint x="248" y="315"/>
+        <di:waypoint x="532" y="177"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_4358FF27-D044-4553-9F8C-DE8D6C55EDEF-AUTO-TARGET" dmnElementRef="_4358FF27-D044-4553-9F8C-DE8D6C55EDEF">
-        <di:waypoint x="761" y="151"/>
-        <di:waypoint x="562" y="152"/>
+        <di:waypoint x="770" y="36"/>
+        <di:waypoint x="582" y="152"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB-AUTO-TARGET" dmnElementRef="_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB">
+        <di:waypoint x="531" y="324"/>
+        <di:waypoint x="532" y="177"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_7E6C72B9-C8EC-4A17-8836-28796EF88C2B" dmnElementRef="_7E6C72B9-C8EC-4A17-8836-28796EF88C2B">
+        <di:waypoint x="793.2990654205607" y="346"/>
+        <di:waypoint x="795" y="238"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_9C35DB06-B608-4645-9D8A-F9D1BF731C61-AUTO-TARGET" dmnElementRef="_9C35DB06-B608-4645-9D8A-F9D1BF731C61">
+        <di:waypoint x="1003" y="134"/>
+        <di:waypoint x="795" y="213"/>
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
