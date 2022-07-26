@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_8AEE04B3-D916-43DA-A4DD-C8E01F66B19D" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_ACBDC615-A1F3-4B29-B81C-74DCE24A42FA" name="Untitled" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_8AEE04B3-D916-43DA-A4DD-C8E01F66B19D">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_5924A816-0785-4D1F-A2F5-70C9D8109BB0" name="tHypertensionDx" isCollection="false">
+    <dmn:itemComponent id="_9EC08977-9F9D-42C9-9719-741CC6782814" name="patientId" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_BF2A0D2C-6698-46D5-9153-2E9674D399C8" name="flagName" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_000647AA-AD3B-4454-8228-F5B340F9BFA8" name="diagnosisDate" isCollection="false">
+      <dmn:typeRef>date</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_37EF2A83-12AE-4219-A48F-51AAC8F47D90" name="tHypertensionDxList" isCollection="true">
+    <dmn:typeRef>tHypertensionDx</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_69E39F76-E023-48ED-A002-9971D5888308" name="Hypertension Data">
+    <dmn:extensionElements/>
+    <dmn:variable id="_BBFCC50F-AD31-4871-BCE0-AD577D680C6A" name="Hypertension Data" typeRef="tHypertensionDxList"/>
+  </dmn:inputData>
+  <dmn:decision id="_5257AE7F-C428-4988-82BD-335D87F29909" name="Flags Result">
+    <dmn:extensionElements/>
+    <dmn:variable id="_202B70CF-42CB-4887-B0FE-23843756BA9B" name="Flags Result" typeRef="number"/>
+    <dmn:informationRequirement id="_D721FA31-C886-42FA-A966-BF942EA99304">
+      <dmn:requiredInput href="#_69E39F76-E023-48ED-A002-9971D5888308"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_4358FF27-D044-4553-9F8C-DE8D6C55EDEF">
+      <dmn:requiredKnowledge href="#_37886295-C735-4F04-85AF-0B9BC03C0594"/>
+    </dmn:knowledgeRequirement>
+    <dmn:literalExpression id="_1BB3062D-46A7-4FE7-87AC-FB6022A9CFCD">
+      <dmn:text>Hypertension Check(Hypertension Data)</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmn:businessKnowledgeModel id="_37886295-C735-4F04-85AF-0B9BC03C0594" name="Hypertension Check">
+    <dmn:extensionElements/>
+    <dmn:variable id="_DA867FB7-1084-4A0B-8250-C07F2E40A415" name="Hypertension Check" typeRef="number"/>
+    <dmn:encapsulatedLogic id="_2D0477EA-6AB4-4D16-B1CA-FA9736F7BF2A" kind="FEEL">
+      <dmn:formalParameter id="_02D71E62-A629-4A42-BB80-4F01F2EE7E4E" name="pHypertensionData" typeRef="tHypertensionDxList"/>
+      <dmn:literalExpression id="_694DB4A5-9E91-489C-91CF-FA5FA7108482">
+        <dmn:text>count( pHypertensionData[ after(diagnosisDate, date(today().year-1, 1, 1)) and before(diagnosisDate, date(today().year, 6, 30)) ] )</dmn:text>
+      </dmn:literalExpression>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_42842724-2825-4B08-945E-EA2AD481D26A" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_1BB3062D-46A7-4FE7-87AC-FB6022A9CFCD">
+            <kie:width>521</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_694DB4A5-9E91-489C-91CF-FA5FA7108482">
+            <kie:width>1087</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_2D0477EA-6AB4-4D16-B1CA-FA9736F7BF2A">
+            <kie:width>50</kie:width>
+            <kie:width>1087</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_69E39F76-E023-48ED-A002-9971D5888308" dmnElementRef="_69E39F76-E023-48ED-A002-9971D5888308" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="461" y="294" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_5257AE7F-C428-4988-82BD-335D87F29909" dmnElementRef="_5257AE7F-C428-4988-82BD-335D87F29909" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="462" y="127" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_37886295-C735-4F04-85AF-0B9BC03C0594" dmnElementRef="_37886295-C735-4F04-85AF-0B9BC03C0594" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="711" y="126" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_D721FA31-C886-42FA-A966-BF942EA99304" dmnElementRef="_D721FA31-C886-42FA-A966-BF942EA99304">
+        <di:waypoint x="511" y="319"/>
+        <di:waypoint x="512" y="177"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_4358FF27-D044-4553-9F8C-DE8D6C55EDEF-AUTO-TARGET" dmnElementRef="_4358FF27-D044-4553-9F8C-DE8D6C55EDEF">
+        <di:waypoint x="761" y="151"/>
+        <di:waypoint x="562" y="152"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
