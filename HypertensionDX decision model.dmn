@@ -130,7 +130,7 @@
   <dmn:decision id="_B2051B71-60AB-4A05-8644-A8F0DC378C8C" name="SPB related to HypertensionDx Check">
     <dmn:description>returns the reading containing the SBP that meets the criteria</dmn:description>
     <dmn:extensionElements/>
-    <dmn:variable id="_232CB6A2-1218-4D24-8162-FE7C16AD2205" name="SPB related to HypertensionDx Check" typeRef="tBloodPressureReading"/>
+    <dmn:variable id="_232CB6A2-1218-4D24-8162-FE7C16AD2205" name="SPB related to HypertensionDx Check" typeRef="boolean"/>
     <dmn:informationRequirement id="_CDE652AD-B48D-45C6-8C46-252539F7618E">
       <dmn:requiredInput href="#_69E39F76-E023-48ED-A002-9971D5888308"/>
     </dmn:informationRequirement>
@@ -570,14 +570,6 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
         <di:waypoint x="819" y="387"/>
         <di:waypoint x="893" y="235"/>
       </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-drg-_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8-AUTO-TARGET" dmnElementRef="_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8">
-        <di:waypoint x="1224" y="61.68421052631581"/>
-        <di:waypoint x="893" y="162"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-drg-_17B00C3E-D020-45FC-90F8-76E303E20582-AUTO-TARGET" dmnElementRef="_17B00C3E-D020-45FC-90F8-76E303E20582">
-        <di:waypoint x="823.2990654205607" y="81.6842105263158"/>
-        <di:waypoint x="893" y="162"/>
-      </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_3ED4E343-D6A5-4D80-BBD9-BC654DF1124A-AUTO-TARGET" dmnElementRef="_3ED4E343-D6A5-4D80-BBD9-BC654DF1124A">
         <di:waypoint x="476" y="203.5"/>
         <di:waypoint x="796" y="198.5"/>
@@ -585,6 +577,14 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
       <dmndi:DMNEdge id="dmnedge-drg-_59982502-6E12-4509-946C-EC3C5481EF42" dmnElementRef="_59982502-6E12-4509-946C-EC3C5481EF42">
         <di:waypoint x="1271.5" y="197.5"/>
         <di:waypoint x="990" y="198.5"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8-AUTO-TARGET" dmnElementRef="_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8">
+        <di:waypoint x="1224" y="61.68421052631581"/>
+        <di:waypoint x="893" y="162"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_17B00C3E-D020-45FC-90F8-76E303E20582-AUTO-TARGET" dmnElementRef="_17B00C3E-D020-45FC-90F8-76E303E20582">
+        <di:waypoint x="823.2990654205607" y="81.6842105263158"/>
+        <di:waypoint x="893" y="162"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB" dmnElementRef="_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB">
         <di:waypoint x="1271.5981308411215" y="378.3421052631579"/>
