@@ -52,7 +52,7 @@
     </dmn:authorityRequirement>
     <dmn:literalExpression id="_1BB3062D-46A7-4FE7-87AC-FB6022A9CFCD">
       <dmn:description>returns the # of Hypertensions that falls into a given date range</dmn:description>
-      <dmn:text>Hypertension Check(Hypertension Data)</dmn:text>
+      <dmn:text>Hypertension Date range Check(Hypertension Data)</dmn:text>
     </dmn:literalExpression>
   </dmn:decision>
   <dmn:businessKnowledgeModel id="_37886295-C735-4F04-85AF-0B9BC03C0594" name="Hypertension Date range Check">
@@ -103,7 +103,7 @@
           <dmn:description>returns the most recent reading</dmn:description>
         </dmn:variable>
         <dmn:literalExpression id="_0C9C0005-4A50-4876-83DF-D7BE8488B481">
-          <dmn:text>sort(Blood Pressure Readings[readingDate.year = today().year], Sort by Date)</dmn:text>
+          <dmn:text>sort(Blood Pressure Readings[readingDate.year = today().year], Sort by Date Descending)</dmn:text>
         </dmn:literalExpression>
       </dmn:contextEntry>
       <dmn:contextEntry>
@@ -167,7 +167,7 @@
       </dmn:contextEntry>
       <dmn:contextEntry>
         <dmn:literalExpression id="_3E9CE024-5BDC-48C0-9016-E53213998FFC">
-          <dmn:text>count(sortedHypertensions) &gt;= 2 and mostRecentReading and after(mostRecentReading.readingDate, sortedHypertensions[2].diagnosisDate)</dmn:text>
+          <dmn:text>count(sortedHypertensions) &gt;= 2 and mostRecentReading and after(Most Recent Reading.readingDate, sortedHypertensions[2].diagnosisDate)</dmn:text>
         </dmn:literalExpression>
       </dmn:contextEntry>
     </dmn:context>
