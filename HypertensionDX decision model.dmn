@@ -204,7 +204,7 @@
     </dmn:extensionElements>
     <dmn:type/>
   </dmn:knowledgeSource>
-  <dmn:knowledgeSource id="_F346652A-6D07-4DD7-88AD-99AB94CE9C59" name="Conditions 2, 4, 5, 7" locationURI="">
+  <dmn:knowledgeSource id="_F346652A-6D07-4DD7-88AD-99AB94CE9C59" name="Conditions 2-4-5-7" locationURI="">
     <dmn:description>Most recent SBP must be in current year
 Most recent SBP must be SBP &lt; 140
 Most recent DBP must be in current year
