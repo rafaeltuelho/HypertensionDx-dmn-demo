@@ -51,6 +51,7 @@
       <dmn:requiredAuthority href="#_2D0B707D-40B8-45AA-8464-17981100D40D"/>
     </dmn:authorityRequirement>
     <dmn:literalExpression id="_1BB3062D-46A7-4FE7-87AC-FB6022A9CFCD">
+      <dmn:description>returns the # of Hypertensions that falls into a given date range</dmn:description>
       <dmn:text>Hypertension Check(Hypertension Data)</dmn:text>
     </dmn:literalExpression>
   </dmn:decision>
@@ -84,6 +85,7 @@
     </dmn:encapsulatedLogic>
   </dmn:businessKnowledgeModel>
   <dmn:decision id="_1CEB8CE4-B775-4EFD-9AD8-FC4FF1620398" name="Most Recent Reading">
+    <dmn:description>returns the most recent reading matching the rule's criteria.</dmn:description>
     <dmn:extensionElements/>
     <dmn:variable id="_F40ADD9E-2246-42ED-9258-1B483D63F2F8" name="Most Recent Reading" typeRef="tBloodPressureReading"/>
     <dmn:informationRequirement id="_7E6C72B9-C8EC-4A17-8836-28796EF88C2B">
@@ -97,7 +99,9 @@
     </dmn:authorityRequirement>
     <dmn:context id="_6D012BA7-AAD9-4543-85AB-F85BAA64890D">
       <dmn:contextEntry>
-        <dmn:variable id="_AB9CCE2B-2241-442F-A0EB-C0AF7DCD0E9A" name="sortedReadings" typeRef="tReadings"/>
+        <dmn:variable id="_AB9CCE2B-2241-442F-A0EB-C0AF7DCD0E9A" name="sortedReadings" typeRef="tReadings">
+          <dmn:description>returns the most recent reading</dmn:description>
+        </dmn:variable>
         <dmn:literalExpression id="_0C9C0005-4A50-4876-83DF-D7BE8488B481">
           <dmn:text>sort(Blood Pressure Readings[readingDate.year = today().year], Sort by Date)</dmn:text>
         </dmn:literalExpression>
@@ -128,6 +132,7 @@
     </dmn:context>
   </dmn:decision>
   <dmn:decision id="_B2051B71-60AB-4A05-8644-A8F0DC378C8C" name="SPB related to HypertensionDx Check">
+    <dmn:description>returns the reading containing the SBP that meets the criteria</dmn:description>
     <dmn:extensionElements/>
     <dmn:variable id="_232CB6A2-1218-4D24-8162-FE7C16AD2205" name="SPB related to HypertensionDx Check" typeRef="tBloodPressureReading"/>
     <dmn:informationRequirement id="_CE377A00-D1BB-4AD5-9918-C4B751C5E53E">
@@ -147,7 +152,9 @@
     </dmn:authorityRequirement>
     <dmn:context id="_E7146DF0-E1D6-405E-B6EB-C60E97797553">
       <dmn:contextEntry>
-        <dmn:variable id="_3F9ECCBB-CB56-4F9B-B466-1DB9A6314ABC" name="sortedHypertensions" typeRef="tHypertensionDx"/>
+        <dmn:variable id="_3F9ECCBB-CB56-4F9B-B466-1DB9A6314ABC" name="sortedHypertensions" typeRef="tHypertensionDx">
+          <dmn:description>return the </dmn:description>
+        </dmn:variable>
         <dmn:literalExpression id="_600F7CC7-4EB7-4F08-B716-E348A75C8824">
           <dmn:text>sort(Hypertension Data, Sort by Date Ascending)</dmn:text>
         </dmn:literalExpression>
@@ -177,6 +184,7 @@
     </dmn:encapsulatedLogic>
   </dmn:businessKnowledgeModel>
   <dmn:decision id="_309FC39F-0E9F-49EC-999B-E45EDBA128B7" name="Hospice Event Check">
+    <dmn:description>returns true if there is a Hospice event in the current year.</dmn:description>
     <dmn:extensionElements/>
     <dmn:variable id="_6ACFA24F-4B49-4332-B5F8-62BFE3A824B5" name="Hospice Event Check" typeRef="boolean"/>
     <dmn:informationRequirement id="_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB">
@@ -294,7 +302,7 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="480.5981308411215" y="281" width="100" height="50"/>
+        <dc:Bounds x="480.5981308411215" y="281" width="123" height="51"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-drg-_5257AE7F-C428-4988-82BD-335D87F29909" dmnElementRef="_5257AE7F-C428-4988-82BD-335D87F29909" isCollapsed="false">
@@ -321,7 +329,7 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
           <dmndi:StrokeColor red="0" green="0" blue="0"/>
           <dmndi:FontColor red="0" green="0" blue="0"/>
         </dmndi:DMNStyle>
-        <dc:Bounds x="841.2990654205607" y="389" width="100" height="50"/>
+        <dc:Bounds x="841.2990654205607" y="389" width="141" height="50"/>
         <dmndi:DMNLabel/>
       </dmndi:DMNShape>
       <dmndi:DMNShape id="dmnshape-drg-_E991D791-DDCA-46BB-B6DB-55D3431ABA3A" dmnElementRef="_E991D791-DDCA-46BB-B6DB-55D3431ABA3A" isCollapsed="false">
@@ -419,7 +427,7 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
         <di:waypoint x="602.5" y="198"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_D721FA31-C886-42FA-A966-BF942EA99304-AUTO-TARGET" dmnElementRef="_D721FA31-C886-42FA-A966-BF942EA99304">
-        <di:waypoint x="530.5981308411215" y="306"/>
+        <di:waypoint x="542.0981308411215" y="306.5"/>
         <di:waypoint x="537" y="224"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_8A3A2D47-1B78-4EE8-A36F-5F78FD9310B0-AUTO-TARGET" dmnElementRef="_8A3A2D47-1B78-4EE8-A36F-5F78FD9310B0">
@@ -427,7 +435,7 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
         <di:waypoint x="537" y="172"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_7E6C72B9-C8EC-4A17-8836-28796EF88C2B" dmnElementRef="_7E6C72B9-C8EC-4A17-8836-28796EF88C2B">
-        <di:waypoint x="891.2990654205607" y="414"/>
+        <di:waypoint x="911.7990654205607" y="414"/>
         <di:waypoint x="768" y="197"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_9C35DB06-B608-4645-9D8A-F9D1BF731C61-AUTO-TARGET" dmnElementRef="_9C35DB06-B608-4645-9D8A-F9D1BF731C61">
@@ -439,7 +447,7 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
         <di:waypoint x="768" y="172"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_CE377A00-D1BB-4AD5-9918-C4B751C5E53E-AUTO-TARGET" dmnElementRef="_CE377A00-D1BB-4AD5-9918-C4B751C5E53E">
-        <di:waypoint x="891.2990654205607" y="414"/>
+        <di:waypoint x="911.7990654205607" y="414"/>
         <di:waypoint x="1087" y="221.5"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8-AUTO-TARGET" dmnElementRef="_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8">
@@ -447,7 +455,7 @@ Most recent DBP must be after second Hypertension Dx</dmn:description>
         <di:waypoint x="1087" y="171.5"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_CDE652AD-B48D-45C6-8C46-252539F7618E-AUTO-TARGET" dmnElementRef="_CDE652AD-B48D-45C6-8C46-252539F7618E">
-        <di:waypoint x="530.5981308411215" y="306"/>
+        <di:waypoint x="542.0981308411215" y="306.5"/>
         <di:waypoint x="1087" y="221.5"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_88FFCD2B-676D-411A-B5FC-6409C19BD3B7-AUTO-TARGET" dmnElementRef="_88FFCD2B-676D-411A-B5FC-6409C19BD3B7">
