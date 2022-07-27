@@ -190,10 +190,10 @@ and after(bpReadingDate, sortedHypertensions[2].diagnosisDate)</dmn:text>
       </dmn:literalExpression>
     </dmn:encapsulatedLogic>
   </dmn:businessKnowledgeModel>
-  <dmn:decision id="_309FC39F-0E9F-49EC-999B-E45EDBA128B7" name="Hospice Event Check">
+  <dmn:decision id="_309FC39F-0E9F-49EC-999B-E45EDBA128B7" name="No Hospice Event in Current Year Check">
     <dmn:description>returns true if there is a Hospice event in the current year.</dmn:description>
     <dmn:extensionElements/>
-    <dmn:variable id="_6ACFA24F-4B49-4332-B5F8-62BFE3A824B5" name="Hospice Event Check" typeRef="boolean"/>
+    <dmn:variable id="_6ACFA24F-4B49-4332-B5F8-62BFE3A824B5" name="No Hospice Event in Current Year Check" typeRef="boolean"/>
     <dmn:informationRequirement id="_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB">
       <dmn:requiredInput href="#_E991D791-DDCA-46BB-B6DB-55D3431ABA3A"/>
     </dmn:informationRequirement>
@@ -502,6 +502,10 @@ else
         <di:waypoint x="736.3920274651917" y="309.50000000202573"/>
         <di:waypoint x="841.5" y="221.5"/>
       </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_FFD58E5A-184D-4E11-9B41-4A48A3D7B4D3-AUTO-TARGET" dmnElementRef="_FFD58E5A-184D-4E11-9B41-4A48A3D7B4D3">
+        <di:waypoint x="922" y="439"/>
+        <di:waypoint x="841.5" y="221.5"/>
+      </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8-AUTO-TARGET" dmnElementRef="_81FBAD55-43A2-44E2-9DE6-B4B9B61836C8">
         <di:waypoint x="1087" y="131.34210526315792"/>
         <di:waypoint x="841.5" y="171.5"/>
@@ -509,10 +513,6 @@ else
       <dmndi:DMNEdge id="dmnedge-drg-_17B00C3E-D020-45FC-90F8-76E303E20582-AUTO-TARGET" dmnElementRef="_17B00C3E-D020-45FC-90F8-76E303E20582">
         <di:waypoint x="927.2990654205607" y="32.684210526315795"/>
         <di:waypoint x="841.5" y="171.5"/>
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="dmnedge-drg-_FFD58E5A-184D-4E11-9B41-4A48A3D7B4D3-AUTO-TARGET" dmnElementRef="_FFD58E5A-184D-4E11-9B41-4A48A3D7B4D3">
-        <di:waypoint x="922" y="439"/>
-        <di:waypoint x="841.5" y="221.5"/>
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="dmnedge-drg-_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB" dmnElementRef="_D78E876B-C0CD-4764-9EE9-0B4153AD1BFB">
         <di:waypoint x="355.5981308411215" y="305.3421052631579"/>
